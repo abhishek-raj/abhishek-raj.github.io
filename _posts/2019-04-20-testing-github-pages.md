@@ -1,6 +1,8 @@
 ---
 layout: post
-title:  "Testing Github Pages"
+title: "Testing Github Pages"
+author: "Abhishek Raj"
+tags: "Github Pages" Jekyll
 ---
 
 # Testing Github Pages to see basic markup
