@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Testing Github Pages"
 author: "Abhishek Raj"
 tags: "Github Pages" Jekyll
