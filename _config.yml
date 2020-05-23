@@ -1,11 +1,13 @@
-theme: minima
-author: Abhishek Raj
-email: raj.abhishek.01.1@gmail.com
+author:
+ name: Abhishek Raj
+ email: raj.abhishek.01.1@gmail.com
 
 title: My Wiki
 description: Basic Site to store what I discover
-
-show_downloads: false
  
 minima:
-  skin: dark
+ social_links:
+  github: abhishek-raj
+ skin: dark
+
+theme: minima
