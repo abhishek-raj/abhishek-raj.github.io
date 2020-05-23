@@ -16,3 +16,4 @@ for g in /sys/kernel/iommu_groups/*;
    done;
  done;
 ```
+> Taken from Archlinux wiki: https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF
