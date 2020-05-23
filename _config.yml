@@ -7,4 +7,9 @@ description: Basic Site to store what I discover
 github_username: abhishek-raj
 linkedin_username: abhishek-raj-b8a493123
 
+# build settings
 theme: minima
+
+plugins:
+ - jekyll-feed
+ - jekyll-seo-tag
