@@ -39,12 +39,22 @@ For me these are the ids:
 00:14.2 0500: 8086:a36f (rev 10)
 00:14.3 0280: 8086:a370 (rev 10)
 ```
+I am using Ubuntu 20.04 so the above ids aren't what virsh expects, we can get the ids using this:
+```shell
+virsh nodedev-list | grep pci
+```
+Which got me these ids:
+```
+pci_0000_00_14_0
+pci_0000_00_14_2
+pci_0000_00_14_3
+```
 
 Now, detach the required devices:
 ```shell
-virsh nodedev-dettach pci_8086_a36d
-virsh nodedev-dettach pci_8086_a36f
-virsh nodedev-dettach pci_8086_a370
+virsh nodedev-dettach pci_0000_00_14_0
+virsh nodedev-dettach pci_0000_00_14_2
+virsh nodedev-dettach pci_0000_00_14_3
 ```
 
 Now since we are passing through a Bluetooth **PCI** Device we need to add the devices before starting the VM, I use virt-manager to add them. You can use the following https://www.linux-kvm.org/page/How_to_assign_devices_with_VT-d_in_KVM for doing it manually using virsh.
@@ -64,14 +74,21 @@ if [[ $1 == "ubuntu" ]] && [[ $2 == "start" || $2 == "stopped" || $2 == "prepare
 then
   if [[ $2 == "prepare" ]]
   then
-    virsh nodedev-dettach pci_8086_a36d
-    virsh nodedev-dettach pci_8086_a36f
-    virsh nodedev-dettach pci_8086_a370
+    virsh nodedev-dettach pci_0000_00_14_0
+    virsh nodedev-dettach pci_0000_00_14_2
+    virsh nodedev-dettach pci_0000_00_14_3
   elif [[ $2 == "release" ]]
   then
-    virsh nodedev-reattach pci_8086_a36d
-    virsh nodedev-reattach pci_8086_a36f
-    virsh nodedev-reattach pci_8086_a370
+    virsh nodedev-reattach pci_0000_00_14_0
+    virsh nodedev-reattach pci_0000_00_14_2
+    virsh nodedev-reattach pci_0000_00_14_3
   fi
 fi
 ```
+
+Make sure that the script is executable:
+```shell
+chmod o+rx qemu
+```
+
+Restart the libvirt daemon.
