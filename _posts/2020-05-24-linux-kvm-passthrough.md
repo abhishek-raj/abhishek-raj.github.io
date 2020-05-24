@@ -50,14 +50,16 @@ virsh nodedev-dettach pci_8086_a370
 Now since we are passing through a Bluetooth **PCI** Device we need to add the devices before starting the VM, I use virt-manager to add them. You can use the following https://www.linux-kvm.org/page/How_to_assign_devices_with_VT-d_in_KVM for doing it manually using virsh.
 
 ### Automating these things:
-We can use the libvirt hooks to automate the detaching and reattaching the devices. We will be using the qemu hook.
+We can use the libvirt hooks to automate the detaching and reattaching the devices: https://libvirt.org/hooks.html.
+
+We will be using the qemu hook.
 
 Script `/etc/libvirt/hooks/qemu`:
 
 ```shell
 #!/bin/bash
 
-# $1 is the domain name and $2 
+# $1 is the domain name and $2 is for the action step
 if [[ $1 == "ubuntu" ]] && [[ $2 == "start" || $2 == "stopped" || $2 == "prepare" || $2 == "release" ]]
 then
   if [[ $2 == "prepare" ]]
